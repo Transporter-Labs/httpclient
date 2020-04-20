@@ -503,8 +503,8 @@ class HTTPClient
       @proxy_auth.reset_challenge
     else
       @proxy = urify(proxy)
-      if @proxy.scheme == nil or @proxy.scheme.downcase != 'http' or
-          @proxy.host == nil or @proxy.port == nil
+      if @proxy.scheme == nil or (@proxy.scheme.downcase != 'http' and @proxy.scheme.downcase != 'https') 
+         or @proxy.host == nil or @proxy.port == nil
         raise ArgumentError.new("unsupported proxy #{proxy}")
       end
       @proxy_auth.reset_challenge
